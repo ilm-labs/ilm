@@ -1,9 +1,5 @@
 # Eulim
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/eulim`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -20,9 +16,32 @@ Or install it yourself as:
 
     $ gem install eulim
 
+## Modules
+
+* Structrues
+* Chemistry
+
+### Structures
+* Pipe
+
+### Chemistry
+
+* Element
+* Compound
+
+#### Element
+
+* H, He, Li, Be, B, C, N, O, F, Ne, Na, Mg
+* symbol, name, atomic_number, atomic_mass
+
 ## Usage
 
-TODO: Write usage instructions here
+	$ Eulim::Chemistry::Element.get_by_symbol("H")
+	=> #<Eulim::Chemistry::Element:0x0055ac58c146e8 @symbol="Mg", @name="Magnesium", @atomic_number=12, @atomic_mass=24.305>
+
+	$ Eulim::Chemistry::Element.get_by_atomic_number(12)
+	=> #<Eulim::Chemistry::Element:0x0055ac58c146e8 @symbol="Mg", @name="Magnesium", @atomic_number=12, @atomic_mass=24.305>
+
 
 ## Development
 
