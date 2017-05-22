@@ -1,6 +1,11 @@
 module Eulim::Chemistry
 	class Element
 
+		VALID_SYMBOL_REGEXP = /[A-Z][a-z]{0,2}/
+		VALID_NAME_REGEXP = /[A-Z][a-z]+/
+
+		attr_accessor :atomic_mass
+
 		@@elements = [
 			{ symbol:'H',		name: 'Hydrogen', 	atomic_number: 1,		atomic_mass: 1.0079 },
 			{ symbol:'He',	name: 'Helium', 		atomic_number: 2,		atomic_mass: 4.002602 },

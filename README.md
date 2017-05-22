@@ -45,14 +45,11 @@ Or install it yourself as:
 	=> #<Eulim::Chemistry::Element: @symbol="Mg", @name="Magnesium", @atomic_number=12, @atomic_mass=24.305>
 
 	$ Eulim::Chemistry::Compound.new("CaCO3")
-	=> #<Eulim::Chemistry::Compound:0x005571d475b250 @formula="CaCO3">
+	=> #<Eulim::Chemistry::Compound: @formula="CaCO3">
 
-	$ Eulim::Chemistry::Compound.new("CaCO3").constituent_elements
-	=> [
-		#<Eulim::Chemistry::Element: @symbol="Ca", @name="Calcium", @atomic_number=20, @atomic_mass=40.078>,
-		#<Eulim::Chemistry::Element: @symbol="C", @name="Carbon", @atomic_number=6, @atomic_mass=12.0107>,
-		#<Eulim::Chemistry::Element: @symbol="O", @name="Oxygen", @atomic_number=8, @atomic_mass=15.9996>
-	]
+	$ Eulim::Chemistry::Compound.new("CaCO3").elements
+	=> [#<Eulim::Chemistry::Element: @symbol="Ca", @name="Calcium", @atomic_number=20, @atomic_mass=40.078>, #<Eulim::Chemistry::Element: @symbol="C", @name="Carbon", @atomic_number=6, @atomic_mass=12.0107>, #<Eulim::Chemistry::Element: @symbol="O", @name="Oxygen", @atomic_number=8, @atomic_mass=15.9996>]
+	
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
