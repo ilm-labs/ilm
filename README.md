@@ -36,6 +36,8 @@ Or install it yourself as:
 
 #### Compound
 
+* molecular_mass
+
 ## Usage
 
 	$ Eulim::Chemistry::Element.get_by_symbol("H")
@@ -49,6 +51,9 @@ Or install it yourself as:
 
 	$ Eulim::Chemistry::Compound.new("CaCO3").elements
 	=> [#<Eulim::Chemistry::Element: @symbol="Ca", @name="Calcium", @atomic_number=20, @atomic_mass=40.078>, #<Eulim::Chemistry::Element: @symbol="C", @name="Carbon", @atomic_number=6, @atomic_mass=12.0107>, #<Eulim::Chemistry::Element: @symbol="O", @name="Oxygen", @atomic_number=8, @atomic_mass=15.9996>]
+
+	$ Eulim::Chemistry::Compound.new("Be3Al2(SiO3)6").molecular_mass
+	=> 537.505346
 	
 ## Development
 

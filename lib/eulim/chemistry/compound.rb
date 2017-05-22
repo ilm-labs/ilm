@@ -17,6 +17,15 @@ module Eulim::Chemistry
 			mass
 		end
 
+		def elements
+			elements = []
+			element_atom_count = get_element_atom_count
+			element_atom_count.each do |symbol, count|
+				elements << Element.get_by_symbol(symbol)
+			end
+			elements
+		end
+
 		private
 			def get_element_atom_count formula = @formula, group_multiplier = 1, result = {}, groups = []
 				formula
