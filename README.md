@@ -41,7 +41,7 @@ Or install it yourself as:
 * methods: new(compound formula)
 
 ## Usage
-
+	```ruby
 	$ Eulim::Chemistry::Element.get_by_symbol "H"
 	=> #<Eulim::Chemistry::Element: @symbol="H", @name="Hydrogen", @atomic_number=1, @atomic_mass=1.0079>
 
@@ -53,7 +53,7 @@ Or install it yourself as:
 
 	$ Eulim::Chemistry::Compound.new("CaCO3")
 	=> #<Eulim::Chemistry::Compound: @formula="CaCO3", @constituents=[{:element=>#<Eulim::Chemistry::Element: @symbol="Ca", @name="Calcium", @atomic_number=20, @atomic_mass=40.078>, :atom_count=>1}, {:element=>#<Eulim::Chemistry::Element: @symbol="C", @name="Carbon", @atomic_number=6, @atomic_mass=12.0107>, :atom_count=>1}, {:element=>#<Eulim::Chemistry::Element: @symbol="O", @name="Oxygen", @atomic_number=8, @atomic_mass=15.9996>, :atom_count=>3}], @molecular_mass=100.0875>
-	
+	```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
