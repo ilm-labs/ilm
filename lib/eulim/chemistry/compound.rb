@@ -3,28 +3,31 @@ module Eulim::Chemistry
 
 		VALID_COMPOUND_REGEXP = /[A-Z][a-z]{0,2}\d*|\((?:[^()]*(?:\(.*\))?[^()]*)+\)\d*/
 
+		attr_accessor :molecular_mass, :constituents, :formula
+		
 		def initialize(arg)
 			@formula = arg
-			@constituent_atoms = get_constituent_atoms
-		end
-
-		def molecular_mass
-			mass = 0
-			@constituent_atoms.each do |symbol, count|
-				mass += Element.get_by_symbol(symbol).atomic_mass * count
-			end
-			mass
-		end
-
-		def elements
-			elements = []
-			@constituent_atoms.each do |symbol, count|
-				elements << {element: Element.get_by_symbol(symbol), atom_count: count}
-			end
-			elements
+			@constituents = get_constituents
+			@molecular_mass = get_molecular_mass
 		end
 
 		private
+			def get_molecular_mass
+				mass = 0
+				@constituents.each do |constituent|
+					mass += constituent[:element].atomic_mass * constituent[:atom_count]
+				end
+				mass
+			end
+
+			def get_constituents
+				constituents = []
+				get_constituent_atoms.each do |symbol, count|
+					constituents << {element: Element.get_by_symbol(symbol), atom_count: count}
+				end
+				constituents
+			end
+
 			def get_constituent_atoms formula=@formula, result={}
 				constituents = formula.scan VALID_COMPOUND_REGEXP
 				constituents.each do |constituent|

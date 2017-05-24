@@ -32,28 +32,27 @@ Or install it yourself as:
 #### Element
 
 * H, He, Li, Be, B, C, N, O, F, Ne, Na, Mg, Al, Si, P, S, Cl, Ar, K , Ca, Sc, Ti, V, Cr, Mn, Fe, Co, Ni
-* symbol, name, atomic_number, atomic_mass
+* attributes: symbol, name, atomic_number, atomic_mass
+* methods: get_by_* (* can be any of the attributes)
 
 #### Compound
 
-* molecular_mass
+* attributes: formula, molecular_mass, constituents
+* methods: new(compound formula)
 
 ## Usage
 
-	$ Eulim::Chemistry::Element.get_by_symbol("H")
-	=> #<Eulim::Chemistry::Element: @symbol="H", @name="Hydrogen", @atomic_number=1, @atomic_mass=1.008>
+	$ Eulim::Chemistry::Element.get_by_symbol "H"
+	=> #<Eulim::Chemistry::Element: @symbol="H", @name="Hydrogen", @atomic_number=1, @atomic_mass=1.0079>
 
-	$ Eulim::Chemistry::Element.get_by_atomic_number(12)
+	$ Eulim::Chemistry::Element.get_by_atomic_number 12
 	=> #<Eulim::Chemistry::Element: @symbol="Mg", @name="Magnesium", @atomic_number=12, @atomic_mass=24.305>
 
+	$ Eulim::Chemistry::Element.get_by_name "helium" # or "Helium"
+	=> #<Eulim::Chemistry::Element: @symbol="He", @name="Helium", @atomic_number=2, @atomic_mass=4.002602>
+
 	$ Eulim::Chemistry::Compound.new("CaCO3")
-	=> #<Eulim::Chemistry::Compound: @formula="CaCO3">
-
-	$ Eulim::Chemistry::Compound.new("CaCO3").elements
-	=> [#<Eulim::Chemistry::Element: @symbol="Ca", @name="Calcium", @atomic_number=20, @atomic_mass=40.078>, #<Eulim::Chemistry::Element: @symbol="C", @name="Carbon", @atomic_number=6, @atomic_mass=12.0107>, #<Eulim::Chemistry::Element: @symbol="O", @name="Oxygen", @atomic_number=8, @atomic_mass=15.9996>]
-
-	$ Eulim::Chemistry::Compound.new("Be3Al2(SiO3)6").molecular_mass
-	=> 537.505346
+	=> #<Eulim::Chemistry::Compound: @formula="CaCO3", @constituents=[{:element=>#<Eulim::Chemistry::Element: @symbol="Ca", @name="Calcium", @atomic_number=20, @atomic_mass=40.078>, :atom_count=>1}, {:element=>#<Eulim::Chemistry::Element: @symbol="C", @name="Carbon", @atomic_number=6, @atomic_mass=12.0107>, :atom_count=>1}, {:element=>#<Eulim::Chemistry::Element: @symbol="O", @name="Oxygen", @atomic_number=8, @atomic_mass=15.9996>, :atom_count=>3}], @molecular_mass=100.0875>
 	
 ## Development
 
