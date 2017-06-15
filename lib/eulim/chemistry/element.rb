@@ -13,12 +13,13 @@ module Eulim
       @@array = Array.new
       
       def initialize(arg)
-        @name = arg[1].to_s.strip
-        @symbol = arg[0].to_s.strip
-        @atomic_number = arg[2].to_s.strip
-        @atomic_mass = arg[3].to_s.strip
+        @name = arg[1]
+        @symbol = arg[0]
+        @atomic_number = arg[2]
+        @atomic_mass = arg[3]
       end
       
+      ##elements of the csv have no spaces 
       CSV.foreach(File.join(File.dirname(__FILE__), "elements.csv"), headers: true) do |row|
         @@array << new(row)
       end
