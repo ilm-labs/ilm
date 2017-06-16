@@ -15,8 +15,8 @@ module Eulim
       def initialize(arg)
         @name = arg[1]
         @symbol = arg[0]
-        @atomic_number = arg[2]
-        @atomic_mass = arg[3]
+        @atomic_number = arg[2].to_i
+        @atomic_mass = arg[3].to_i
       end
       
       ##elements of the csv have no spaces 
