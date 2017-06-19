@@ -6,33 +6,35 @@ module Eulim
       attr_accessor :equation, :is_valid, :is_balanced, :species
       def initialize(arg)
         @equation = arg
-        get_reactants_and_products
-        @is_valid = valid_rxn?
-        @is_balanced = balanced_rxn?
+        @species = get_species
+        # @is_valid = valid_rxn?
+        # @is_balanced = balanced_rxn?
       end
 
      private
 
-      def get_reactants_and_products(rxn_str = @equation)
-        @species = {}
-        @species[:reactants], @species[:products] = rxn_str.split('>>')
-        @species.each do |type, type_species|
-          @species[type] = @species[type].split('+')
-          @species[type].each_with_index do |specie, idx|
-            @species[type][idx] = get_specie specie
+      def get_species
+        r = {}; result = {}
+        r[:reactants], r[:products] = @equation.split('>>')
+        r.each do |type, type_species|
+          result[type] = {}
+          r[type] = r[type].split('+')
+          r[type].each do |specie|
+            specie_info = get_specie_info specie
+            result[type][specie_info.keys[0]] = {
+              compound: Compound.new(specie_info.keys[0]),
+              stoichiometric_coeff: specie_info.values[0]
+            }
           end
         end
-        @species
+        result
       end
 
-      def get_specie(specie)
+      def get_specie_info(specie)
         specie = specie.strip
         sc = get_stoichiometric_coeff specie
         offset = sc.zero? ? 0 : sc.to_s.length
-        {
-          compound: Compound.new(specie[offset..specie.length]),
-          stoichiometric_coeff: sc.zero? ? 1 : sc
-        }
+        { specie[offset..specie.length] => sc.zero? ? 1 : sc }
       end
 
       def balanced_rxn?
