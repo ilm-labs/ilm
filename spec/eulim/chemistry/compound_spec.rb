@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Eulim::Chemistry::Compound do
   C = Eulim::Chemistry::Compound
-  it 'molecular mass for H is 1.0079' do
-    expect(C.new('H').molecular_mass).to eq(1.0079)
+  it 'molecular mass for H2SO4 is 98.07919999999999' do
+    expect(C.new('H2SO4').molecular_mass).to eq(98.07919999999999)
   end
     
   it 'Constituents of KClO3 are "K","Cl", "O"' do

@@ -10,14 +10,14 @@ module Eulim
 
       def initialize(arg)
         @formula = arg
-        @constituents = constituents
-        @molecular_mass = molecular_mass
+        @constituents = get_constituents
+        @molecular_mass = get_molecular_mass
         @constituent_atoms = get_const_atoms
       end
 
       private
 
-      def molecular_mass
+      def get_molecular_mass
         mass = 0
         @constituents.each do |const|
           mass += const[:element].atomic_mass * const[:atom_count]
@@ -25,7 +25,7 @@ module Eulim
         mass
       end
 
-      def constituents
+      def get_constituents
         constituents = []
         get_const_atoms.each do |symbol, count|
           constituents << {

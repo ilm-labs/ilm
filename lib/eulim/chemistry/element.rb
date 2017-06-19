@@ -10,18 +10,18 @@ module Eulim
 
       @@attrs = %w[symbol name atomic_number atomic_mass]
       # Data taken from 'www.science.co.il/elements/'
-      @@array = Array.new
+      @@elements = Array.new
       
       def initialize(arg)
         @name = arg[1]
         @symbol = arg[0]
         @atomic_number = arg[2].to_i
-        @atomic_mass = arg[3].to_i
+        @atomic_mass = arg[3].to_f
       end
       
-      ##elements of the csv have no spaces 
+      # elements of the csv have no spaces 
       CSV.foreach(File.join(File.dirname(__FILE__), "elements.csv"), headers: true) do |row|
-        @@array << new(row)
+        @@elements << new(row)
       end
 
       private_class_method def self.method_missing(m, *args)
@@ -35,10 +35,9 @@ module Eulim
       end
       
       private_class_method def self.get_element_by_attribute(attribute, value)
-        @@array.each do |element|
-          if element.instance_variable_get(("@"+attribute).intern) == value  ## elements value of attribute == value give by user
-            return element
-          end
+        @@elements.each do |element|
+          # elements value of attribute == value give by user
+          return element if element.instance_variable_get(("@"+attribute).intern) == value  
         end
         raise(NameError, 'element not found')
       end

@@ -18,13 +18,20 @@ RSpec.describe Eulim::Chemistry::Reaction do
     expect(R.new('H2 >> 2H').is_valid).to eq(true)
   end
 
- # it '6CO2 + 6H2O >> C6H12O6 + 6O2, CO2, H2O are reactant and C6H12O6, O2 are products' do
-  #  expect(R.new('6CO2 + 6H2O >> C6H12O6 + 6O2').get_reactants_and_products).should include()
-  #end
+  it '6CO2 + 6H2O >> C6H12O6 + 6O2, CO2, H2O are reactant and C6H12O6, O2 are products' do
+    react_prod = {:reactants => [], :products => []}
+    R.new('6CO2 + 6H2O >> C6H12O6 + 6O2').species.each do |specie, type_species|
+      type_species.each do |type_specie|
+        react_prod[specie] << type_specie[:compound].formula
+      end
+    end
+    expect(react_prod[:reactants]).to include("CO2", "H2O")
+    expect(react_prod[:products]).to include("C6H12O6", "O2")
+  end
 
-  it '10KClO3 has stoichiometric_coeff 10' do
-    expect(R.new('10KCl03 >> As2').compounds[:reactants].first[:stoichiometric_coeff]).to eq(10)
-    expect(R.new('10KCl03 >> As2').compounds[:products].first[:stoichiometric_coeff]).to eq(1)
+  it '10KCl03 >> As2 has stoichiometric_coeff 10 and 1' do
+    expect(R.new('10KCl03 >> As2').species[:reactants].first[:stoichiometric_coeff]).to eq(10)
+    expect(R.new('10KCl03 >> As2').species[:products].first[:stoichiometric_coeff]).to eq(1)
   end
   
 end
