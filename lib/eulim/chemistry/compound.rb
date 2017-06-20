@@ -1,3 +1,5 @@
+require 'unitwise'
+
 module Eulim
   module Chemistry
     # This class has functionality for compounds
@@ -17,7 +19,7 @@ module Eulim
       private
 
       def calculate_molecular_mass
-        @molecular_mass = 0
+        @molecular_mass = Unitwise(0, 'u')
         @constituents.each do |_symbol, info|
           @molecular_mass += info[:element].atomic_mass * info[:atom_count]
         end
