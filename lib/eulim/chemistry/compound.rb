@@ -1,3 +1,5 @@
+require 'unitwise'
+
 module Eulim
   module Chemistry
     # This class has functionality for compounds
@@ -18,7 +20,7 @@ module Eulim
       private
 
       def get_molecular_mass
-        mass = 0
+        mass = Unitwise(0, 'u')
         @constituents.each do |const|
           mass += const[:element].atomic_mass * const[:atom_count]
         end

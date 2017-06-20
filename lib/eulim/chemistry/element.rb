@@ -1,4 +1,5 @@
 require 'csv'
+require 'unitwise'
 
 module Eulim
   module Chemistry
@@ -16,7 +17,7 @@ module Eulim
         @name = arg[1]
         @symbol = arg[0]
         @atomic_number = arg[2].to_i
-        @atomic_mass = arg[3].to_f
+        @atomic_mass = Unitwise(arg[3].to_f, 'u')
       end
       
       # elements of the csv have no spaces 
