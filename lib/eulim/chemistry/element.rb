@@ -7,7 +7,7 @@ module Eulim
     class Element
       attr_accessor :atomic_mass, :symbol, :name, :atomic_number
 
-      ATTRIBUTES = %w[symbol name atomic_number atomic_mass].freeze
+      ATTRS = %w[symbol name atomic_number atomic_mass].freeze
       # Data taken from 'www.science.co.il/elements/'
       ELEMENTS = []
 
@@ -44,7 +44,7 @@ module Eulim
 
       private_class_method def self.valid_method?(m, attribute)
         super unless m.to_s.start_with?('get_by_')
-        raise(NameError, 'Invalid attribute') unless ATTRIBUTES.include? attribute
+        raise(NameError, 'Invalid attribute') unless ATTRS.include? attribute
       end
 
       private_class_method :new
