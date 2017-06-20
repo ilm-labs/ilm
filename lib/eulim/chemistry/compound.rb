@@ -8,34 +8,33 @@ module Eulim
       COMPOUND_REGEXP =
         /[A-Z][a-z]{0,2}\d*|\((?:[^()]*(?:\(.*\))?[^()]*)+\)\d*/
 
-      attr_accessor :molecular_mass, :constituents, :formula, :constituent_atoms
+      attr_accessor :molecular_mass, :constituents, :formula
 
       def initialize(arg)
         @formula = arg
-        @constituents = get_constituents
-        @molecular_mass = get_molecular_mass
-        @constituent_atoms = get_const_atoms
+        build_constituents
+        calculate_molecular_mass
       end
 
       private
 
-      def get_molecular_mass
-        mass = Unitwise(0, 'u')
-        @constituents.each do |const|
-          mass += const[:element].atomic_mass * const[:atom_count]
+      def calculate_molecular_mass
+        @molecular_mass = 0
+        @constituents.each do |_symbol, info|
+          @molecular_mass += info[:element].atomic_mass * info[:atom_count]
         end
-        mass
+        @molecular_mass
       end
 
-      def get_constituents
-        constituents = []
+      def build_constituents
+        @constituents = {}
         get_const_atoms.each do |symbol, count|
-          constituents << {
+          @constituents[symbol] = {
             element: Element.get_by_symbol(symbol),
             atom_count: count
           }
         end
-        constituents
+        @constituents
       end
 
       def get_const_atoms(formula = @formula, r = {})
