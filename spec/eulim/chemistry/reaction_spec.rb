@@ -10,6 +10,7 @@ RSpec.describe Eulim::Chemistry::Reaction do
 
   it 'validation should work' do
     expect(R.new('2H >> B').is_valid).to eq(false)
+    p 'here'
     expect(R.new('H2 >> 2H').is_valid).to eq(true)
   end
 
@@ -26,5 +27,11 @@ RSpec.describe Eulim::Chemistry::Reaction do
       .species[:reactants]['KClO3'][:stoichiometry]).to eq(10)
     expect(R.new(r)
       .species[:products]['As2'][:stoichiometry]).to eq(1)
+  end
+
+  it '6CO2(g) + 6H2O(l) >> C6H12O6(l) + 6O2(g) should collect state correctly ' do
+    r = '6CO2(g) + 6H2O(l) >> C6H12O6(l) + 6O2(g)'
+    species = R.new(r).species
+    expect(species[:reactants]["CO2"][:state]).to eq("gaseous")
   end
 end
