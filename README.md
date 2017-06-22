@@ -43,7 +43,7 @@ Or install it yourself as:
 
 ### Reaction
 
-* attributes::equation, :is_valid, :is_balanced, :species
+* attributes: equation, is_valid, is_balanced, species
 * methods: new("Put your reaction string here") #For eg: ('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)')
 
 ## Usage
@@ -58,7 +58,10 @@ $ Eulim::Chemistry::Element.get_by_name "helium" # or "Helium"
 => #<Eulim::Chemistry::Element:0x00000002ca66e0 @name="Helium", @symbol="He", @atomic_number=2, @atomic_mass=#<Unitwise::Measurement value=4.002602 unit=u>>
 
 $ Eulim::Chemistry::Compound.new("CaCO3")
-=> #<Eulim::Chemistry::Compound:0x00000002a65340 @formula="CaCO3", @constituents={"Ca"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c805a8 @name="Calcium", @symbol="Ca", @atomic_number=20, @atomic_mass=#<Unitwise::Measurement value=40.078 unit=u>>, :atom_count=>1}, "C"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c8f6e8 @name="Carbon", @symbol="C", @atomic_number=6, @atomic_mass=#<Unitwise::Measurement value=12.0107 unit=u>>, :atom_count=>1}, "O"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c8dc30 @name="Oxygen", @symbol="O", @atomic_number=8, @atomic_mass=#<Unitwise::Measurement value=15.9996 unit=u>>, :atom_count=>3}}, @molecular_mass=#<Unitwise::Measurement value=100.0875 unit=u>>
+=> #<Eulim::Chemistry::Compound:0x00000002a65340 @formula="CaCO3", @constituents={
+"Ca"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c805a8 @name="Calcium", @symbol="Ca", @atomic_number=20, @atomic_mass=#<Unitwise::Measurement value=40.078 unit=u>>, :atom_count=>1},
+"C"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c8f6e8 @name="Carbon", @symbol="C", @atomic_number=6, @atomic_mass=#<Unitwise::Measurement value=12.0107 unit=u>>, :atom_count=>1},
+"O"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c8dc30 @name="Oxygen", @symbol="O", @atomic_number=8, @atomic_mass=#<Unitwise::Measurement value=15.9996 unit=u>>, :atom_count=>3}}, @molecular_mass=#<Unitwise::Measurement value=100.0875 unit=u>>
 
 $ Eulim::Chemistry::Reaction.new('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').equation
  => "2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)" 
