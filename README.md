@@ -47,7 +47,7 @@ Or install it yourself as:
 * methods: new("Put your reaction string here") #For eg: ('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)')
 
 ## Usage
-```ruby
+```bash
 $ Eulim::Chemistry::Element.get_by_symbol "H"
 => #<Eulim::Chemistry::Element:0x000000025e5ab8 @name="Hydrogen", @symbol="H", @atomic_number=1, @atomic_mass=#<Unitwise::Measurement value=1.0079 unit=u>>
 
