@@ -1,5 +1,3 @@
-require 'unitwise'
-
 module Eulim
   module Chemistry
     # This class has functionality for compounds
