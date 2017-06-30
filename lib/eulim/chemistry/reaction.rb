@@ -4,6 +4,9 @@ module Eulim
     # Ex: check for balanced rxn, validity of a rxn
     class Reaction
       attr_accessor :equation, :is_valid, :is_balanced, :species
+
+      STATES = { '(s)' => 'solid', '(l)' => 'liquid', '(g)' => 'gaseous', '(aq)' => 'aqueous', "" => 'liquid' }
+
       def initialize(arg)
         @equation = arg
         @species = build_species
@@ -11,7 +14,7 @@ module Eulim
         @is_balanced = balanced_rxn?
       end
 
-      private
+     # private
 
       def build_species
         r = {}
@@ -20,21 +23,23 @@ module Eulim
         r.each do |type, _type_species|
           result[type] = {}
           r[type].split('+').each do |specie|
-            result[type].merge!(get_specie_info(specie))
+            result[type].merge!(get_specie_info(specie.strip))
           end
         end
         result
       end
 
       def get_specie_info(specie)
-        specie = specie.strip
         sc = get_stoichiometry specie
-        offset = sc.zero? ? 0 : sc.to_s.length
-        specie_str = specie[offset..specie.length]
+        st = get_state specie
+        offset_sc = sc.zero? ? 0 : sc.to_s.length
+        offset_st = st.empty? ? 0 : st.length
+        specie_str = specie[offset_sc..(specie.length - offset_st -1)]
         {
           specie_str => {
             compound: Compound.new(specie_str),
-            stoichiometry: sc.zero? ? 1 : sc
+            stoichiometry: sc.zero? ? 1 : sc,
+            state: STATES[st]
           }
         }
       end
@@ -67,6 +72,10 @@ module Eulim
 
       def get_stoichiometry(specie)
         specie.match(/^\d*/).to_a.first.to_i
+      end
+
+      def get_state(specie)
+        specie.match(/\((s|l|g|aq)\)$/).to_s
       end
     end
   end

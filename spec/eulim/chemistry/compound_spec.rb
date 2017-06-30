@@ -3,7 +3,7 @@ require 'unitwise'
 
 RSpec.describe Eulim::Chemistry::Compound do
   C = Eulim::Chemistry::Compound
-  it 'molecular mass for H2SO4 is 98.07919999999999' do
+  it 'molecular mass for H2SO4 is 98.0792' do
     expect(C.new('H2SO4').molecular_mass)
       .to eq(Unitwise(98.0792, 'u'))
   end

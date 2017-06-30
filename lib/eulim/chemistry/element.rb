@@ -19,7 +19,6 @@ module Eulim
         @atomic_mass = Unitwise(arg[3].to_f, 'u')
       end
 
-      # elements of the csv have no spaces
       CSV.foreach(File.join(File.dirname(__FILE__), 'elements.csv'), headers: true) do |row|
         ELEMENTS << new(row)
       end
