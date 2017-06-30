@@ -5,17 +5,17 @@ RSpec.describe Eulim do
     expect(Eulim::VERSION).not_to be nil
   end
 
-  it 'does something useful' do
-    expect(true).to eq(true)
-  end
+  it 'should initialize aliases' do
+    expect(Ch).to eq(Eulim::Chemistry)
+    expect(Elem).to eq(Ch::Element)
+    expect(Comp).to eq(Ch::Compound)
+    expect(Rxn).to eq(Ch::Reaction)
+    expect(Subs).to eq(Ch::Substance)
 
-  it 'structure asks for some stuff' do
-    expect(Eulim::Structures::Structure.requirements).to eq('gimme some stuff.')
-  end
-
-  it 'pipe asks for 4 things' do
-    expect(Eulim::Structures::Pipe.requirements).to eq(
-      'gimme radius, length, thickness, material...'
-    )
+    expect(Cl).to eq(Eulim::Chemical)
+    expect(Rcts).to eq(Cl::Reactors)
+    expect(Br).to eq(Rcts::Batch)
+    expect(Cstr).to eq(Rcts::CSTR)
+    expect(Pfr).to eq(Rcts::PFR)
   end
 end
