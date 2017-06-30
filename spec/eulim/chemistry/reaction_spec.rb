@@ -28,4 +28,10 @@ RSpec.describe Eulim::Chemistry::Reaction do
     expect(ub
       .species[:products]['H3PO4'][:stoichiometry]).to eq(23)
   end
+
+  it '6CO2(g) + 6H2O(l) >> C6H12O6(l) + 6O2(g) should collect state correctly ' do
+    r = '6CO2(g) + 6H2O(l) >> C6H12O6(l) + 6O2(g)'
+    species = R.new(r).species
+    expect(species[:reactants]["CO2"][:state]).to eq("gaseous")
+  end
 end
