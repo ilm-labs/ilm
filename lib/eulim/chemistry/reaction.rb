@@ -5,7 +5,11 @@ module Eulim
     class Reaction
       attr_accessor :equation, :is_valid, :is_balanced, :species
 
-      STATES = { '(s)' => 'solid', '(l)' => 'liquid', '(g)' => 'gaseous', '(aq)' => 'aqueous', "" => 'liquid' }
+      STATES = {
+        '(s)' => 'solid', '(l)' => 'liquid',
+        '(g)' => 'gaseous', '(aq)' => 'aqueous',
+        '' => 'liquid'
+      }.freeze
 
       def initialize(arg)
         @equation = arg
@@ -14,7 +18,7 @@ module Eulim
         @is_balanced = balanced_rxn?
       end
 
-     # private
+      private
 
       def build_species
         r = {}
@@ -34,7 +38,7 @@ module Eulim
         st = get_state specie
         offset_sc = sc.zero? ? 0 : sc.to_s.length
         offset_st = st.empty? ? 0 : st.length
-        specie_str = specie[offset_sc..(specie.length - offset_st -1)]
+        specie_str = specie[offset_sc..(specie.length - offset_st - 1)]
         {
           specie_str => {
             compound: Compound.new(specie_str),
