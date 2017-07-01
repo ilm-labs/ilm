@@ -3,12 +3,34 @@ module Eulim
     module Reactors
       # This is the base class for the diff kinds of reactors
       class Reactor
-        attr_accessor :system, :volume, :input, :output, :conversion
+        attr_reader :system, :volume, :input, :output, :reaction
 
         def initialize(args = {})
-          @volume = volume_if_valid(args[:volume]) if args[:volume]
-          @system = args[:system] || :open
-          @input = input_if_valid(args[:input]) if args[:input]
+          self.system = args[:system]
+          self.volume = args[:volume] if args[:volume]
+          self.input = args[:input] if args[:input]
+          self.output = args[:output] if args[:output]
+          self.reaction = args[:reaction] if args[:reaction]
+        end
+
+        def system=(sys)
+          @system = sys || :open
+        end
+
+        def volume=(vol)
+          @volume = volume_if_valid vol
+        end
+
+        def input=(inp)
+          @input = feed_if_valid inp
+        end
+
+        def output=(out)
+          @output = feed_if_valid out
+        end
+
+        def reaction=(rxn)
+          @reaction = reaction_if_valid rxn
         end
 
         private
@@ -23,20 +45,30 @@ module Eulim
           raise ArgumentError, 'Invalid volume unit'
         end
 
-        def input_if_valid(inp)
-          raise ArgumentError, 'Invalid input substance' if inp[:substance].class != Subs
+        def feed_if_valid(f)
+          raise ArgumentError, 'Invalid substance' if f[:substance].class != Sub
           begin
-            inp[:quantity] = Unitwise inp[:quantity]
+            f[:quantity] = Unitwise f[:quantity]
           rescue
-            raise ArgumentError, 'Invalid input quantity'
+            raise ArgumentError, 'Invalid quantity'
           end
-          dim = inp[:quantity].composition.to_h
-          return inp if valid_input_quantity_compositions.include? dim
-          raise ArgumentError, 'Invalid input quantity unit'
+          dim = f[:quantity].composition.to_h
+          return f if valid_feed_quantity_composition.include? dim
+          raise ArgumentError, 'Invalid quantity unit'
         end
 
-        def valid_input_quantity_compositions
+        def valid_feed_quantity_composition
           [{ 'M' => 1 }, { 'M' => 1, 'T' => -1 }, {}, { 'T' => -1 }]
+        end
+
+        def reaction_if_valid(r)
+          # raise ArgumentError, 'Substance not in reaction' if
+          #   @input && (
+          #     r.species[:reactants].keys &
+          #     @input[:substance].species.keys
+          #   ).empty?
+          return r if r.class == Rxn && r.is_valid
+          raise ArgumentError, 'Invalid reaction argument'
         end
       end
     end

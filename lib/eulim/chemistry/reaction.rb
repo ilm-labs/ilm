@@ -11,11 +11,12 @@ module Eulim
         '' => 'liquid'
       }.freeze
 
-      def initialize(arg)
-        @equation = arg
+      def initialize(equation, order = 1)
+        @equation = equation
         @species = build_species
         @is_valid = valid_rxn?
         @is_balanced = balanced_rxn?
+        @order = order
       end
 
       private

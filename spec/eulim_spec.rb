@@ -10,7 +10,7 @@ RSpec.describe Eulim do
     expect(Elem).to eq(Ch::Element)
     expect(Comp).to eq(Ch::Compound)
     expect(Rxn).to eq(Ch::Reaction)
-    expect(Subs).to eq(Ch::Substance)
+    expect(Sub).to eq(Ch::Substance)
 
     expect(Cl).to eq(Eulim::Chemical)
     expect(Rcts).to eq(Cl::Reactors)
