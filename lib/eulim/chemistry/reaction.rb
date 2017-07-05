@@ -1,9 +1,11 @@
+require 'matrix'
+
 module Eulim
   module Chemistry
     # This class has functionality for reaction
     # Ex: check for balanced rxn, validity of a rxn
     class Reaction
-      attr_accessor :equation, :is_valid, :is_balanced, :species
+      attr_accessor :equation, :is_valid, :is_balanced, :species, :participants, :balance
 
       STATES = { '(s)' => 'solid', '(l)' => 'liquid', '(g)' => 'gaseous', '(aq)' => 'aqueous', "" => 'liquid' }
 
@@ -12,9 +14,12 @@ module Eulim
         @species = build_species
         @is_valid = valid_rxn?
         @is_balanced = balanced_rxn?
+        participant_elements
+        write_matrix
+        @balance = balance_rxn
       end
 
-     # private
+     private
 
       def build_species
         r = {}
@@ -77,6 +82,60 @@ module Eulim
       def get_state(specie)
         specie.match(/\((s|l|g|aq)\)$/).to_s
       end
+
+      def participant_elements
+        participants = []
+        @species[:reactants].keys.each do |react|
+          participants << @species[:reactants][react][:compound].constituents.keys
+        end
+        @participants = participants.flatten.uniq
+      end
+
+      def get_participant_row(participant)
+        row = []
+        vars = [:reactants, :products]
+        vars.each do |var|
+          i = var == :reactants ? 1 : -1
+          @species[var].keys.each do |specie|
+            if specie.include? participant
+              row << @species[var][specie][:compound].constituents[participant][:atom_count]*i
+            else
+              row << 0
+            end
+          end
+        end
+        row
+      end
+
+      def write_matrix
+        @matrix = Matrix[]
+        @participants.each do |participant|
+          @matrix = Matrix.rows(@matrix.to_a << get_participant_row(participant))          
+        end
+        @matrix
+      end
+
+      def balanced_coeff_array
+        null_space_array = @matrix.nullspace
+        lcm = null_space_array.collect(&:denominator).reduce(1,:lcm)
+        null_space_array.collect { |x| (x * lcm).to_i }
+      end
+      
+      def balance_rxn
+        exp = ''
+        i = 0
+        bal_coeff = balanced_coeff_array
+        @species.keys.each do |key|
+          @species[key].keys.each do |comp|
+            coeff = bal_coeff[i] == 1? ' ' : ' ' + bal_coeff[i].abs.to_s
+            exp = exp + coeff + comp + ' +'
+            i = i+1
+          end
+          exp = key == :reactants ? exp.chomp('+') + '>>' : exp.chomp('+')
+        end
+        exp
+      end
+
     end
   end
 end

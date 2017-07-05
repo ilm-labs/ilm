@@ -34,4 +34,9 @@ RSpec.describe Eulim::Chemistry::Reaction do
     species = R.new(r).species
     expect(species[:reactants]["CO2"][:state]).to eq("gaseous")
   end
+
+  it 'KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2 should be balanced'
+    r = 'KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2'
+    expect(R.new('KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2').balance).to eq(" 2KMnO4 + 16HCl >> 2KCl + 2MnCl2 + 8H2O + 5Cl2 ")
+  end
 end
