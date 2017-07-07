@@ -1,8 +1,26 @@
 require 'require_all'
+require 'unitwise'
 
 require_all '../eulim/lib'
 
 # Root module. Everything in the gem goes inside this
 module Eulim
-  # Your code goes here...
+end
+
+Ch    =   Eulim::Chemistry
+Elem  =   Ch::Element
+Comp  =   Ch::Compound
+Rxn   =   Ch::Reaction
+Subs  =   Ch::Substance
+
+Cl    =   Eulim::Chemical
+Rcts  =   Cl::Reactors
+Br    =   Rcts::Batch
+Cstr  =   Rcts::CSTR
+Pfr   =   Rcts::PFR
+
+def Unitwise(*args)
+  regex = /(\d+)(.*)/
+  args = args.first.scan(regex).first.collect(&:strip) if args.count == 1
+  Unitwise::Measurement.new(*args.first.to_f, *args.last)
 end

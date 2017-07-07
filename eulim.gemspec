@@ -7,8 +7,9 @@ require 'eulim/version'
 Gem::Specification.new do |spec|
   spec.name          = 'eulim'
   spec.version       = Eulim::VERSION
-  spec.authors       = ['Syed Fazil Basheer']
-  spec.email         = ['fazil.basheer@quester.xyz']
+  spec.authors       = ['Syed Fazil Basheer','Somesh Choudhary']
+  spec.email         = ['fazil.basheer@quester.xyz', 'c.somesh5@gmail.com']
+	
 
   spec.summary       = 'A gem for scientific data.'
   spec.description   = 'A gem for scientific data.'
@@ -41,4 +42,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency             'unitwise', '~>2.1.0'
   spec.add_dependency             'rubypython', '~> 0.6.4'
   spec.add_dependency             'require_all', '~> 1.4.0'
+  spec.add_dependency 'require_all', '~> 1.4.0'
+  spec.add_dependency 'unitwise', '~> 2.1.0'
+
 end
