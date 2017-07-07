@@ -53,6 +53,10 @@ $ Eulim::Chemistry::Element.get_by_name "helium" # or "Helium"
 
 $ Eulim::Chemistry::Compound.new("CaCO3")
 => #<Eulim::Chemistry::Compound: @formula="CaCO3", @constituents=[{:element=>#<Eulim::Chemistry::Element: @symbol="Ca", @name="Calcium", @atomic_number=20, @atomic_mass=40.078>, :atom_count=>1}, {:element=>#<Eulim::Chemistry::Element: @symbol="C", @name="Carbon", @atomic_number=6, @atomic_mass=12.0107>, :atom_count=>1}, {:element=>#<Eulim::Chemistry::Element: @symbol="O", @name="Oxygen", @atomic_number=8, @atomic_mass=15.9996>, :atom_count=>3}], @molecular_mass=100.0875>
+
+$ Eulim::Chemistry::Reaction.new("KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2").balanced_eqn
+=> "2KMnO4 + 16HCl >> 2KCl + 2MnCl2 + 8H2O + 5Cl2"
+
 ```
 ## Development
 
