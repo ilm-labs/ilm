@@ -11,10 +11,11 @@ Ch    =   Eulim::Chemistry
 Elem  =   Ch::Element
 Comp  =   Ch::Compound
 Rxn   =   Ch::Reaction
-Subs  =   Ch::Substance
+Sub   =   Ch::Substance
 
 Cl    =   Eulim::Chemical
 Rcts  =   Cl::Reactors
+Rct   =   Rcts::Reactor
 Br    =   Rcts::Batch
 Cstr  =   Rcts::CSTR
 Pfr   =   Rcts::PFR

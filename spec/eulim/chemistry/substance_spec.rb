@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Eulim::Chemistry::Substance do
-  s = Subs.new 'CaCO3' => 1, 'CO2' => 2, 'CaO' => 0.5
+  s = Sub.new 'CaCO3' => 1, 'CO2' => 2, 'CaO' => 0.5
 
   it 'should collect species correctly' do
     expect(s.species).to include('CaCO3', 'CO2', 'CaO')
