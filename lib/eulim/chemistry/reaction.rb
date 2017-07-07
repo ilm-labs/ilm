@@ -5,34 +5,21 @@ module Eulim
     # This class has functionality for reaction
     # Ex: check for balanced rxn, validity of a rxn
     class Reaction
-<<<<<<< HEAD
-      attr_accessor :equation, :is_valid, :species, :participants, :balanced_eqn
-
-      STATES = { '(s)' => 'solid', '(l)' => 'liquid',
-                 '(g)' => 'gaseous', '(aq)' => 'aqueous', '' => '' }
-=======
-      attr_accessor :equation, :is_valid, :is_balanced, :species, :rate_equation
+      attr_accessor :equation, :is_valid, :species, :participants, :balanced_eqn, :rate_equation
 
       STATES = {
         '(s)' => 'solid', '(l)' => 'liquid',
         '(g)' => 'gaseous', '(aq)' => 'aqueous',
-        '' => 'liquid'
+        '' => ''
       }.freeze
->>>>>>> d063ccc565e0687cc7b4b02e2f9905e1702f5b3d
 
       def initialize(args)
         # rate_eqn should be of the form: 'r_{CaO} = k[CaO][CO2]'
         @equation = args[:equation]
         @species = build_species
         @is_valid = valid_rxn?
-<<<<<<< HEAD
         participant_elements
         @balanced_eqn = balance_rxn
-      end
-
-      private
-=======
-        @is_balanced = balanced_rxn?
         @rate_equation = validify_rate_eqn args[:rate_equation]
       end
 
@@ -49,7 +36,6 @@ module Eulim
           'r' + specie + ' = k * c' + specie
         end
       end
->>>>>>> d063ccc565e0687cc7b4b02e2f9905e1702f5b3d
 
       def build_species
         r = {}

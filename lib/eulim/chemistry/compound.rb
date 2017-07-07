@@ -23,7 +23,7 @@ module Eulim
         @constituents.each do |_symbol, info|
           @molecular_mass += info[:element].atomic_mass * info[:atom_count]
         end
-        @molar_mass = Unitwise(@molecular_mass.value/1000.0, 'kg/mol')
+        @molar_mass = Unitwise(@molecular_mass.value / 1000.0, 'kg/mol')
       end
 
       def build_constituents

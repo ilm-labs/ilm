@@ -8,7 +8,6 @@ module Eulim
           super args
           @system = args[:system] == :isolated ? :isolated : :closed
         end
-
       end
     end
   end

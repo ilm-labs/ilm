@@ -15,8 +15,8 @@ module Eulim
           input = @input[:quantity] * ci[:weight_percent] /
                   (100 * ci[:compound].molar_mass)
           output = @output[:quantity] * co[:weight_percent] /
-                  (100 * co[:compound].molar_mass)
-          x = (input - output)/input
+                   (100 * co[:compound].molar_mass)
+          x = (input - output) / input
         end
 
         def self.humanized_name

@@ -1,6 +1,5 @@
 require 'require_all'
 require 'unitwise'
-require 'calculus'
 
 require_all '../eulim/lib'
 
