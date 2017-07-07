@@ -8,22 +8,22 @@ module Eulim
       COMPOUND_REGEXP =
         /[A-Z][a-z]{0,2}\d*|\((?:[^()]*(?:\(.*\))?[^()]*)+\)\d*/
 
-      attr_accessor :molecular_mass, :constituents, :formula
+      attr_accessor :molecular_mass, :constituents, :formula, :molar_mass
 
       def initialize(arg)
         @formula = arg
         build_constituents
-        calculate_molecular_mass
+        calculate_mass
       end
 
       private
 
-      def calculate_molecular_mass
-        @molecular_mass = Unitwise(0, 'u')
+      def calculate_mass
+        @molecular_mass = Unitwise(0.0, 'u')
         @constituents.each do |_symbol, info|
           @molecular_mass += info[:element].atomic_mass * info[:atom_count]
         end
-        @molecular_mass
+        @molar_mass = Unitwise(@molecular_mass.value/1000.0, 'kg/mol')
       end
 
       def build_constituents
