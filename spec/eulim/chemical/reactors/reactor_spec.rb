@@ -5,8 +5,8 @@ vr = Rct.new(input: { substance: s, quantity: '10 kg' },
              output: { substance: s, quantity: '10 kg' },
              volume: '10l')
 
-b = Rxn.new('Na3PO4(g) + 3HCl(l) >> 3NaCl(s) + H3PO4(aq')
-iv = Rxn.new('2H(g) >> B')
+b = Rxn.new(equation: 'Na3PO4(g) + 3HCl(l) >> 3NaCl(s) + H3PO4(aq')
+iv = Rxn.new(equation: '2H(g) >> B')
 
 RSpec.describe 'Eulim::Chemical::Reactors::Reactor#new' do
   it 'should initialize with correct volume' do

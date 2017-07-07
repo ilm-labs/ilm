@@ -3,7 +3,7 @@ module Eulim
     # This class has functionality for reaction
     # Ex: check for balanced rxn, validity of a rxn
     class Reaction
-      attr_accessor :equation, :is_valid, :is_balanced, :species
+      attr_accessor :equation, :is_valid, :is_balanced, :species, :rate_equation
 
       STATES = {
         '(s)' => 'solid', '(l)' => 'liquid',
@@ -11,15 +11,28 @@ module Eulim
         '' => 'liquid'
       }.freeze
 
-      def initialize(equation, order = 1)
-        @equation = equation
+      def initialize(args)
+        # rate_eqn should be of the form: 'r_{CaO} = k[CaO][CO2]'
+        @equation = args[:equation]
         @species = build_species
         @is_valid = valid_rxn?
         @is_balanced = balanced_rxn?
-        @order = order
+        @rate_equation = validify_rate_eqn args[:rate_equation]
       end
 
       private
+
+      def validify_rate_eqn(rate_eqn)
+        if rate_eqn
+          rate_eqn.gsub('_{', '')
+                  .gsub('}', '')
+                  .gsub('[', ' * c')
+                  .gsub(']', '')
+        else
+          specie = @species[:reactants].keys.first
+          'r' + specie + ' = k * c' + specie
+        end
+      end
 
       def build_species
         r = {}

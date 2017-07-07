@@ -5,6 +5,8 @@ module Eulim
       class Reactor
         attr_reader :system, :volume, :input, :output, :reaction
 
+        # ATTRS = [:system, :volume, :input, :output, :rate_equation]
+
         def initialize(args = {})
           self.system = args[:system]
           self.volume = args[:volume] if args[:volume]
@@ -53,12 +55,12 @@ module Eulim
             raise ArgumentError, 'Invalid quantity'
           end
           dim = f[:quantity].composition.to_h
-          return f if valid_feed_quantity_composition.include? dim
+          return f if valid_feed_quantity_dimensions.include? dim
           raise ArgumentError, 'Invalid quantity unit'
         end
 
-        def valid_feed_quantity_composition
-          [{ 'M' => 1 }, { 'M' => 1, 'T' => -1 }, {}, { 'T' => -1 }]
+        def valid_feed_quantity_dimensions
+          [{ 'M' => 1 }, { 'M' => 1, 'T' => -1 }]
         end
 
         def reaction_if_valid(r)

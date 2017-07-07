@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-ub = Rxn.new('Na3PO4(g) + 3HCl(l) >> 3NaCl(s) + 23H3PO4(aq)')
-b = Rxn.new('Na3PO4(g) + 3HCl(l) >> 3NaCl(s) + H3PO4(aq')
-iv = Rxn.new('2H(g) >> B')
+ub = Rxn.new(equation: 'Na3PO4(g) + 3HCl(l) >> 3NaCl(s) + 23H3PO4(aq)')
+b = Rxn.new(equation: 'Na3PO4(g) + 3HCl(l) >> 3NaCl(s) + H3PO4(aq)')
+iv = Rxn.new(equation: '2H(g) >> B')
 
 RSpec.describe 'Eulim::Chemistry::Reaction#is_balanced' do
   it 'should check if balanced' do
