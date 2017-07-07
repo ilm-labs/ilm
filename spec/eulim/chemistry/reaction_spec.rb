@@ -1,9 +1,10 @@
 require 'spec_helper'
+require 'rubypython'
+
+R = Eulim::Chemistry::Reaction
 
 RSpec.describe Eulim::Chemistry::Reaction do
-  R = Eulim::Chemistry::Reaction
-
-  it 'balancing should work' do
+  it 'is_balanced? method should work' do
     expect(R.new('Na3PO4 + 3HCl >> 3NaCl + H3PO4').is_balanced).to eq(true)
     expect(R.new('Na3PO4 + 3HCl >> 3NaCl + 23H3PO4').is_balanced).to eq(false)
   end
@@ -29,14 +30,17 @@ RSpec.describe Eulim::Chemistry::Reaction do
       .species[:products]['As2'][:stoichiometry]).to eq(1)
   end
 
-  it '6CO2(g) + 6H2O(l) >> C6H12O6(l) + 6O2(g) should collect state correctly ' do
-    r = '6CO2(g) + 6H2O(l) >> C6H12O6(l) + 6O2(g)'
+  it 'H2(g) + O2(g) >> H2O(g) should collect state correctly ' do
+    r = 'H2(g) + O2(g) >> H2O(g)'
     species = R.new(r).species
-    expect(species[:reactants]["CO2"][:state]).to eq("gaseous")
+    expect(species[:reactants]['O2'][:state]).to eq('gaseous')
   end
+end
 
-  it 'KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2 should be balanced'
+RSpec.describe 'Eulim::Chemistry::Reaction#balancer' do
+  it 'KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2 should be balanced' do
     r = 'KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2'
-    expect(R.new('KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2').balance).to eq(" 2KMnO4 + 16HCl >> 2KCl + 2MnCl2 + 8H2O + 5Cl2 ")
+    expect(R.new(r).balance)
+      .to eq('2KMnO4 + 16HCl >> 2KCl + 2MnCl2 + 8H2O + 5Cl2')
   end
 end
