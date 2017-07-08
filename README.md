@@ -44,7 +44,8 @@ Or install it yourself as:
 ### Reaction
 
 * attributes: equation, is_valid, is_balanced, species, balanced_eqn
-* methods: new("Put your reaction string here")      #For eg: ('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)')
+* methods: new(equation: "Put your reaction string here", rate_equation: "r_{CaCo3} = k[CaO]")
+* For eg: (equation: '2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)', rate_equation: "rNa = k[HCl]")
 
 ## Usage
 ```bash
