@@ -43,8 +43,9 @@ Or install it yourself as:
 
 ### Reaction
 
-* attributes: equation, is_valid, is_balanced, species
-* methods: new("Put your reaction string here") #For eg: ('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)')
+* attributes: equation, is_valid, is_balanced, species, balanced_eqn
+* methods: new(equation: "Put your reaction string here", rate_equation: "r_{CaCo3} = k[CaO]")
+* For eg: (equation: '2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)', rate_equation: "rNa = k[HCl]")
 
 ## Usage
 ```bash
@@ -60,19 +61,22 @@ $ Eulim::Chemistry::Element.get_by_name "helium" # or "Helium"
 $ Eulim::Chemistry::Compound.new("CaCO3")
 => #<Eulim::Chemistry::Compound:0x00000002a65340 @formula="CaCO3", @constituents={"Ca"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c805a8 @name="Calcium", @symbol="Ca", @atomic_number=20, @atomic_mass=#<Unitwise::Measurement value=40.078 unit=u>>, :atom_count=>1}, "C"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c8f6e8 @name="Carbon", @symbol="C", @atomic_number=6, @atomic_mass=#<Unitwise::Measurement value=12.0107 unit=u>>, :atom_count=>1}, "O"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c8dc30 @name="Oxygen", @symbol="O", @atomic_number=8, @atomic_mass=#<Unitwise::Measurement value=15.9996 unit=u>>, :atom_count=>3}}, @molecular_mass=#<Unitwise::Measurement value=100.0875 unit=u>>
 
-$ Eulim::Chemistry::Reaction.new('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').equation
+$Eulim::Chemistry::Reaction.new(equation: 'KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2').balanced_eqn
+ => "2KMnO4 + 16HCl >> 2KCl + 2MnCl2 + 8H2O + 5Cl2"
+
+$ Eulim::Chemistry::Reaction.new(equation: '2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').equation
  => "2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)" 
  
-$ Eulim::Chemistry::Reaction.new('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').is_valid
+$ Eulim::Chemistry::Reaction.new(equation: '2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').is_valid
 => true 
  
-$ Eulim::Chemistry::Reaction.new('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').is_balanced
+$ Eulim::Chemistry::Reaction.new(equation: '2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').is_balanced
 => true 
  
-$ Eulim::Chemistry::Reaction.new('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').species
+$ Eulim::Chemistry::Reaction.new(equation: '2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').species
 => {:reactants=>{"Na"=>{:compound=>#<Eulim::Chemistry::Compound:0x00000002ca6910 @formula="Na", @constituents={"Na"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c88e10 @name="Sodium", @symbol="Na", @atomic_number=11, @atomic_mass=#<Unitwise::Measurement value=22.9897 unit=u>>, :atom_count=>1}}, @molecular_mass=#<Unitwise::Measurement value=22.9897 unit=u>>, :stoichiometry=>2, :state=>"solid"}, "HCl"=>{:compound=>#<Eulim::Chemistry::Compound:0x00000002c90ed0 @formula="HCl", @constituents={"H"=>{:element=>#<Eulim::Chemistry::Element:0x000000025e5ab8 @name="Hydrogen", @symbol="H", @atomic_number=1, @atomic_mass=#<Unitwise::Measurement value=1.0079 unit=u>>, :atom_count=>1}, "Cl"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c82c90 @name="Chlorine", @symbol="Cl", @atomic_number=17, @atomic_mass=#<Unitwise::Measurement value=35.453 unit=u>>, :atom_count=>1}}, @molecular_mass=#<Unitwise::Measurement value=36.4609 unit=u>>, :stoichiometry=>2, :state=>"aqueous"}}, :products=>{"NaCl"=>{:compound=>#<Eulim::Chemistry::Compound:0x00000002c73bf0 @formula="NaCl", @constituents={"Na"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c88e10 @name="Sodium", @symbol="Na", @atomic_number=11, @atomic_mass=#<Unitwise::Measurement value=22.9897 unit=u>>, :atom_count=>1}, "Cl"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c82c90 @name="Chlorine", @symbol="Cl", @atomic_number=17, @atomic_mass=#<Unitwise::Measurement value=35.453 unit=u>>, :atom_count=>1}}, @molecular_mass=#<Unitwise::Measurement value=58.4427 unit=u>>, :stoichiometry=>2, :state=>"aqueous"}, "H2"=>{:compound=>#<Eulim::Chemistry::Compound:0x00000002c34180 @formula="H2", @constituents={"H"=>{:element=>#<Eulim::Chemistry::Element:0x000000025e5ab8 @name="Hydrogen", @symbol="H", @atomic_number=1, @atomic_mass=#<Unitwise::Measurement value=1.0079 unit=u>>, :atom_count=>2}}, @molecular_mass=#<Unitwise::Measurement value=2.0158 unit=u>>, :stoichiometry=>1, :state=>"gaseous"}}}
 
-$ Eulim::Chemistry::Reaction.new('2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)')
+$ Eulim::Chemistry::Reaction.new(equation: '2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)')
 => #<Eulim::Chemistry::Reaction:0x00000002ce22f8 @equation="2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)", @species={:reactants=>{"Na"=>{:compound=>#<Eulim::Chemistry::Compound:0x00000002ce1d80 @formula="Na", @constituents={"Na"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c88e10 @name="Sodium", @symbol="Na", @atomic_number=11, @atomic_mass=#<Unitwise::Measurement value=22.9897 unit=u>>, :atom_count=>1}}, @molecular_mass=#<Unitwise::Measurement value=22.9897 unit=u>>, :stoichiometry=>2, :state=>"solid"}, "HCl"=>{:compound=>#<Eulim::Chemistry::Compound:0x00000002cabdc0 @formula="HCl", @constituents={"H"=>{:element=>#<Eulim::Chemistry::Element:0x000000025e5ab8 @name="Hydrogen", @symbol="H", @atomic_number=1, @atomic_mass=#<Unitwise::Measurement value=1.0079 unit=u>>, :atom_count=>1}, "Cl"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c82c90 @name="Chlorine", @symbol="Cl", @atomic_number=17, @atomic_mass=#<Unitwise::Measurement value=35.453 unit=u>>, :atom_count=>1}}, @molecular_mass=#<Unitwise::Measurement value=36.4609 unit=u>>, :stoichiometry=>2, :state=>"aqueous"}}, :products=>{"NaCl"=>{:compound=>#<Eulim::Chemistry::Compound:0x00000002c8cda8 @formula="NaCl", @constituents={"Na"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c88e10 @name="Sodium", @symbol="Na", @atomic_number=11, @atomic_mass=#<Unitwise::Measurement value=22.9897 unit=u>>, :atom_count=>1}, "Cl"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c82c90 @name="Chlorine", @symbol="Cl", @atomic_number=17, @atomic_mass=#<Unitwise::Measurement value=35.453 unit=u>>, :atom_count=>1}}, @molecular_mass=#<Unitwise::Measurement value=58.4427 unit=u>>, :stoichiometry=>2, :state=>"aqueous"},"H2"=>{:compound=>#<Eulim::Chemistry::Compound:0x00000002c6f938 @formula="H2", @constituents={"H"=>{:element=>#<Eulim::Chemistry::Element:0x000000025e5ab8 @name="Hydrogen", @symbol="H", @atomic_number=1, @atomic_mass=#<Unitwise::Measurement value=1.0079 unit=u>>, :atom_count=>2}}, @molecular_mass=#<Unitwise::Measurement value=2.0158 unit=u>>, :stoichiometry=>1, :state=>"gaseous"}}}, @is_valid=true, @is_balanced=true> 
 ```
 ## Development
