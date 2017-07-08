@@ -107,13 +107,14 @@ module Eulim
         @participants = participants.flatten.uniq
       end
 
-      def get_participant_row(participant)
+      def get_participant_row(parti)
         row = []
         @species.keys.each do |key|
           i = key == :reactants ? 1 : -1
           @species[key].keys.each do |specie|
-            if specie.include? participant
-              row << @species[key][specie][:compound].constituents[participant][:atom_count] * i
+            if specie.include? parti
+              row << @species[key][specie][:compound]
+                     .constituents[parti][:atom_count] * i
             else
               row << 0
             end
@@ -124,8 +125,8 @@ module Eulim
 
       def write_matrix
         @matrix = Matrix[]
-        @participants.each do |participant|
-          @matrix = Matrix.rows(@matrix.to_a << get_participant_row(participant))
+        @participants.each do |parti|
+          @matrix = Matrix.rows(@matrix.to_a << get_participant_row(parti))
         end
         @matrix
       end
