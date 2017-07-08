@@ -18,8 +18,8 @@ module Eulim
         @equation = args[:equation]
         @species = build_species
         @is_valid = valid_rxn?
-        p participant_elements
-        # @balanced_eqn = balance_rxn
+        participant_elements
+        @balanced_eqn = balance_rxn
         @rate_equation = validify_rate_eqn args[:rate_equation]
       end
 
