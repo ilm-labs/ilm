@@ -1,5 +1,5 @@
 # Eulim
-Eulim (https://github.com/syedfazilbasheer-quester/eulim-gem) is a Ruby gem for Chemistry, which supports the calculation of molecular mass of compound, balancing chemical equations and efficient handling of states of chemical species. 
+Eulim is a Ruby gem for Chemistry, which supports the calculation of molecular mass of compound, balancing chemical equations and efficient handling of states of chemical species.
 We aim to make Eulim easy to use, fast and accurate chemistry library, with complete test coverage.
 
 ## Installation
@@ -63,7 +63,7 @@ $ Eulim::Chemistry::Element.get_by_name "helium" # or "Helium"
 $ Eulim::Chemistry::Compound.new("CaCO3")
 => #<Eulim::Chemistry::Compound:0x00000002a65340 @formula="CaCO3", @constituents={"Ca"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c805a8 @name="Calcium", @symbol="Ca", @atomic_number=20, @atomic_mass=#<Unitwise::Measurement value=40.078 unit=u>>, :atom_count=>1}, "C"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c8f6e8 @name="Carbon", @symbol="C", @atomic_number=6, @atomic_mass=#<Unitwise::Measurement value=12.0107 unit=u>>, :atom_count=>1}, "O"=>{:element=>#<Eulim::Chemistry::Element:0x00000002c8dc30 @name="Oxygen", @symbol="O", @atomic_number=8, @atomic_mass=#<Unitwise::Measurement value=15.9996 unit=u>>, :atom_count=>3}}, @molecular_mass=#<Unitwise::Measurement value=100.0875 unit=u>>
 
-$Eulim::Chemistry::Reaction.new(equation: 'KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2').balanced_eqn
+$ Eulim::Chemistry::Reaction.new(equation: 'KMnO4 + HCl >> KCl + MnCl2 + H2O + Cl2').balanced_eqn
  => "2KMnO4 + 16HCl >> 2KCl + 2MnCl2 + 8H2O + 5Cl2"
 
 $ Eulim::Chemistry::Reaction.new(equation: '2Na(s) + 2HCl(aq) >> 2NaCl(aq) + H2(g)').equation
