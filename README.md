@@ -1,4 +1,6 @@
 # Eulim
+Eulim (https://github.com/syedfazilbasheer-quester/eulim-gem) is a Ruby gem for Chemistry, which supports the calculation of molecular mass of compound, balancing chemical equations and efficient handling of states of chemical species. 
+We aim to make Eulim easy to use, fast and accurate chemistry library, with complete test coverage.
 
 ## Installation
 
