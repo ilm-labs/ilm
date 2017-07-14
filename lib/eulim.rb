@@ -1,7 +1,7 @@
 require 'require_all'
 require 'unitwise'
 
-require_all '../eulim/lib'
+require_rel '../lib'
 
 # Root module. Everything in the gem goes inside this
 module Eulim
