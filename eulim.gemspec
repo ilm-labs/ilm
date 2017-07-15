@@ -40,5 +40,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '~>0.49.1'
   spec.add_dependency             'unitwise', '~>2.1.0'
   spec.add_dependency             'rubypython', '~> 0.6.4'
-  spec.add_dependency             'require_all', '~> 1.4.0'
 end

@@ -1,5 +1,3 @@
-require 'matrix'
-
 module Eulim
   module Chemistry
     # This class has functionality for reaction

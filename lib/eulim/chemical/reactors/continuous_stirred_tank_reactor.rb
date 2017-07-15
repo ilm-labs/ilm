@@ -1,3 +1,5 @@
+require_relative 'reactor'
+
 module Eulim
   module Chemical
     module Reactors

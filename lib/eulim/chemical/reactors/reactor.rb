@@ -48,7 +48,7 @@ module Eulim
         end
 
         def feed_if_valid(f)
-          raise ArgumentError, 'Invalid substance' if f[:substance].class != Sub
+          raise ArgumentError, 'Invalid substance' if f[:substance].class != Eulim::Chemistry::Substance
           begin
             f[:quantity] = Unitwise f[:quantity]
           rescue
@@ -69,7 +69,7 @@ module Eulim
           #     r.species[:reactants].keys &
           #     @input[:substance].species.keys
           #   ).empty?
-          return r if r.class == Rxn && r.is_valid
+          return r if r.class == Eulim::Chemistry::Reaction && r.is_valid
           raise ArgumentError, 'Invalid reaction argument'
         end
       end

@@ -1,4 +1,6 @@
 require 'rubypython'
+require 'matrix'
+
 # this class is extension of Matrix class offered by ruby
 class Matrix
   def nullspace_as_string

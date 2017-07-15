@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Eulim::Chemistry::Substance do
-  s = Sub.new 'CaCO3' => 1, 'CO2' => 2, 'CaO' => 0.5
+  s = Eulim::Chemistry::Substance.new 'CaCO3' => 1, 'CO2' => 2, 'CaO' => 0.5
 
   it 'should collect species correctly' do
     expect(s.species).to include('CaCO3', 'CO2', 'CaO')
@@ -14,7 +14,7 @@ RSpec.describe Eulim::Chemistry::Substance do
   end
 
   it 'should have compound objects' do
-    expect(s.species['CaCO3'][:compound].class).to eq(Comp)
+    expect(s.species['CaCO3'][:compound].class).to eq(Eulim::Chemistry::Compound)
     expect(s.species['CaO'][:compound].formula).to eq('CaO')
   end
 end

@@ -1,9 +1,9 @@
 require 'spec_helper'
 require 'rubypython'
 
-ub = Rxn.new(equation: 'NH3(g) + O2(g) >> NO(g) + H2O(g)', rate_equation: 'r_{CaO}=k[CaO][CO2]')
-b = Rxn.new(equation: 'Na3PO4(g) + 3HCl(l) >> 3NaCl(s) + H3PO4(aq)')
-iv = Rxn.new(equation: '2H(g) >> B')
+ub = Eulim::Chemistry::Reaction.new(equation: 'NH3(g) + O2(g) >> NO(g) + H2O(g)', rate_equation: 'r_{CaO}=k[CaO][CO2]')
+b = Eulim::Chemistry::Reaction.new(equation: 'Na3PO4(g) + 3HCl(l) >> 3NaCl(s) + H3PO4(aq)')
+iv = Eulim::Chemistry::Reaction.new(equation: '2H(g) >> B')
 
 # RSpec.describe 'Eulim::Chemistry::Reaction#is_balanced' do
 #   it 'should check if balanced' do

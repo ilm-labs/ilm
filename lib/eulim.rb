@@ -1,24 +1,9 @@
-require 'require_all'
+require_relative 'matrix_overrides'
 require 'unitwise'
-
-require_rel '../lib'
 
 # Root module. Everything in the gem goes inside this
 module Eulim
 end
-
-Ch    =   Eulim::Chemistry
-Elem  =   Ch::Element
-Comp  =   Ch::Compound
-Rxn   =   Ch::Reaction
-Sub   =   Ch::Substance
-
-Cl    =   Eulim::Chemical
-Rcts  =   Cl::Reactors
-Rct   =   Rcts::Reactor
-Br    =   Rcts::Batch
-Cstr  =   Rcts::CSTR
-Pfr   =   Rcts::PFR
 
 def Unitwise(*args)
   regex = /(\d+)(.*)/
