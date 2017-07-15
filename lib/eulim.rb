@@ -1,4 +1,6 @@
 require_relative 'matrix_overrides'
+require_relative 'string_overrides'
+require_relative 'class_overrides'
 require 'unitwise'
 
 # Root module. Everything in the gem goes inside this
