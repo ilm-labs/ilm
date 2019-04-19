@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in eulim.gemspec
+# Specify your gem's dependencies in ilm.gemspec
 gemspec
