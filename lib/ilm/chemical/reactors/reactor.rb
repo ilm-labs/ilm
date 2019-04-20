@@ -38,26 +38,17 @@ module Ilm
         private
 
         def volume_if_valid(vol)
-          begin
-            vol = Unitwise vol
-          rescue
-            raise ArgumentError, 'Invalid volume'
-          end
-          return vol if vol.composition.to_h == { 'L' => 3 }
-
-          raise ArgumentError, 'Invalid volume unit'
+          raise ArgumentError, 'Invalid volume' unless vol.is_a? Unitwise::Measurement
+          raise ArgumentError, 'Invalid volume unit' unless vol.composition.to_h == { 'L' => 3 }
+          vol
         end
 
-        def feed_if_valid(f)
-          raise ArgumentError, 'Invalid substance' if f[:substance].class != Ilm::Chemistry::Substance
+        def feed_if_valid(feed)
+          raise ArgumentError, 'Invalid quantity' unless feed[:quantity].is_a? Unitwise::Measurement
+          raise ArgumentError, 'Invalid substance' unless feed[:substance].is_a? Ilm::Chemistry::Substance
 
-          begin
-            f[:quantity] = Unitwise f[:quantity]
-          rescue
-            raise ArgumentError, 'Invalid quantity'
-          end
-          dim = f[:quantity].composition.to_h
-          return f if valid_feed_quantity_dimensions.include? dim
+          dim = feed[:quantity].composition.to_h
+          return feed if valid_feed_quantity_dimensions.include? dim
 
           raise ArgumentError, 'Invalid quantity unit'
         end
@@ -73,6 +64,7 @@ module Ilm
           #     @input[:substance].species.keys
           #   ).empty?
           return r if r.class == Ilm::Chemistry::Reaction && r.is_valid
+
           raise ArgumentError, 'Invalid reaction argument'
         end
       end

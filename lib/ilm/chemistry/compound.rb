@@ -1,12 +1,10 @@
-require 'unitwise'
-
 module Ilm
   module Chemistry
     # This class has functionality for compounds
     # Ex: constituent elements, molecular mass, etc
     class Compound
       COMPOUND_REGEXP =
-        /[A-Z][a-z]{0,2}\d*|\((?:[^()]*(?:\(.*\))?[^()]*)+\)\d*/
+        /[A-Z][a-z]{0,2}\d*|\((?:[^()]*(?:\(.*\))?[^()]*)+\)\d*/.freeze
 
       attr_accessor :molecular_mass, :constituents, :formula, :molar_mass
 
@@ -19,11 +17,11 @@ module Ilm
       private
 
       def calculate_mass
-        @molecular_mass = Unitwise(0.0, 'u')
+        @molecular_mass = 0.0.u
         @constituents.each do |_symbol, info|
           @molecular_mass += info[:element].atomic_mass * info[:atom_count]
         end
-        @molar_mass = Unitwise(@molecular_mass.value / 1000.0, 'kg/mol')
+        @molar_mass = (@molecular_mass.value / 1000.0).send('kg/mol')
       end
 
       def build_constituents
