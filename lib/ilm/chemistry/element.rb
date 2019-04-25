@@ -1,5 +1,4 @@
 require 'csv'
-require 'unitwise'
 
 module Ilm
   module Chemistry
@@ -16,14 +15,16 @@ module Ilm
         @name = arg[1]
         @symbol = arg[0]
         @atomic_number = arg[2].to_i
-        @atomic_mass = Unitwise(arg[3].to_f, 'u')
+        @atomic_mass = arg[3].to_f.u
       end
 
       CSV.foreach(File.join(File.dirname(__FILE__), 'elements.csv'), headers: true) do |row|
         ELEMENTS << new(row)
       end
 
-      private_class_method def self.method_missing(m, *args)
+      private
+
+      def self.method_missing(m, *args)
         attribute = m.to_s.split('get_by_').last
         valid_method? m, attribute
         raise 'please give argument' if args.empty?

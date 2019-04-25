@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'unitwise'
 
 RSpec.describe Ilm::Chemistry::Compound do
   C = Ilm::Chemistry::Compound
