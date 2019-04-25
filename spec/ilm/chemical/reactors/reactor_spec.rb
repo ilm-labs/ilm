@@ -66,8 +66,8 @@ end
   RSpec.describe "Ilm::Chemical::Reactors::Reactor##{feed}" do
     it "should initialize with correct #{feed}" do
       r = Ilm::Chemical::Reactors::Reactor.new
-      r.send "#{feed}=", substance: s, quantity: 10.send('kg/s')
-      expect(r.send(feed)).to eq substance: s, quantity: 10.send('kg/s')
+      r.send "#{feed}=", substance: s, quantity: 10.kg / 1.s
+      expect(r.send(feed)).to eq substance: s, quantity: 10.kg / 1.s
     end
   end
 end

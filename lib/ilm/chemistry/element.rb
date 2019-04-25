@@ -22,7 +22,9 @@ module Ilm
         ELEMENTS << new(row)
       end
 
-      private_class_method def self.method_missing(m, *args)
+      private
+
+      def self.method_missing(m, *args)
         attribute = m.to_s.split('get_by_').last
         valid_method? m, attribute
         raise 'please give argument' if args.empty?

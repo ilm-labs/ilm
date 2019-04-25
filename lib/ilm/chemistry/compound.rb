@@ -21,7 +21,7 @@ module Ilm
         @constituents.each do |_symbol, info|
           @molecular_mass += info[:element].atomic_mass * info[:atom_count]
         end
-        @molar_mass = (@molecular_mass.value / 1000.0).send('kg/mol')
+        @molar_mass = (@molecular_mass.value / 1000.0).kg / 1.mol
       end
 
       def build_constituents
