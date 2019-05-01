@@ -10,7 +10,7 @@ RSpec.describe Ilm::Chemical::Reactors::ContinuousStirredTankReactor do
   input = { substance: s1, quantity: 10.kg / 1.s }
   output = { substance: s2, quantity: 10.kg / 1.s }
   rc = Ilm::Chemical::Reactors::ContinuousStirredTankReactor.new(reaction: rxn, input: input, output: output)
-  it 'should give 1' do
+  it 'should_give_1' do
     expect(rc.find_volume.value)
       .to eq(0.5)
   end

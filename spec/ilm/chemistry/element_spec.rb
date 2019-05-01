@@ -8,12 +8,12 @@ RSpec.describe Ilm::Chemistry::Element do
   let(:hydrogen) { Element.get_by_symbol 'H' }
   let(:helium) { Element.get_by_symbol 'He' }
 
-  it 'A should raise error: Element not found' do
+  it 'A_should_raise_error:_Element_not_found' do
     expect { Element.get_by_symbol('A') }
       .to raise_error(NameError, 'element not found')
   end
 
-  it 'get_by_symbo should raise error: NameError, "Invalid attribute"' do
+  it 'get_by_symbo_should_raise_error:_NameError,_"Invalid_attribute"' do
     expect { Element.get_by_symbo('H') }
       .to raise_error(NameError, 'Invalid attribute')
   end
