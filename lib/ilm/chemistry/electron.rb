@@ -4,12 +4,13 @@ module Ilm
     class Electron
       attr_reader :atom, :spin
 
-      CHARGE = (-1.60217646 * (10**-19)).C
-      MASS = (9.10938356 * (10**-31)).kg
+      CHARGE = (-1.60217646 * (10**-19)).C.freeze
+      MASS = (9.10938356 * (10**-31)).kg.freeze
+      SPINS = %i[+ -].freeze
 
-      def initialize(args)
-        @spin = args[:spin] || [-1/2, +1/2].sample
-        @atom = atom
+      def initialize(args = {})
+        @spin = args[:spin] || SPINS.sample
+        @atom = args[:atom]
       end
 
       def nucleus
