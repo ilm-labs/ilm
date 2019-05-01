@@ -30,7 +30,7 @@ module Ilm
       private
 
       def build_electrons(args)
-        no_of_electrons = (args[:electrons] || @element&.atomic_number).to_i
+        no_of_electrons = (args[:electron_count] || @element&.atomic_number).to_i
         no_of_electrons.times { @electrons << Electron.new(atom: self) }
       end
     end

@@ -22,14 +22,14 @@ RSpec.describe Atom do
   let(:deuterium_ion) do
     Atom.new(
       element: hydrogen,
-      neutrons: 1, electrons: 0
+      neutron_count: 1, electron_count: 0
     )
   end
 
   let(:custom_atom) do
     Atom.new(
-      protons: 8,
-      neutrons: 4, electrons: 2
+      proton_count: 8,
+      neutron_count: 4, electron_count: 2
     )
   end
 
@@ -38,14 +38,14 @@ RSpec.describe Atom do
       it 'should_have_element' do
         expect(hydrogen_atom.element).to be hydrogen
       end
-      it 'should_have_same_number_of_sub_atomic_particles_as_element' do
+      it 'should_have_same_number_of_sub_atomic_particle_count_as_element' do
         expect(hydrogen_atom.electrons.count).to be hydrogen.no_of_electrons
         expect(hydrogen_atom.protons.count).to be hydrogen.no_of_protons
         expect(hydrogen_atom.neutrons.count).to be hydrogen.no_of_neutrons
       end
     end
 
-    context 'when_element_and_sub_atomic_particles_are_given' do
+    context 'when_element_and_sub_atomic_particle_count_are_given' do
       it 'should_have_element' do
         expect(deuterium_ion.element).to be hydrogen
       end
@@ -56,9 +56,9 @@ RSpec.describe Atom do
       end
     end
 
-    context 'when_only_sub_atomic_particles_are_given' do
+    context 'when_only_sub_atomic_particle_count_are_given' do
       it 'should_not_have_element' do
-        expect(custom_atom.element).to be nil
+        expect(custom_atom.element).to be_nil
       end
       it 'should_have_given_number_of_sub_atomic_particles' do
         expect(custom_atom.electrons.count).to be 2
@@ -67,7 +67,7 @@ RSpec.describe Atom do
       end
     end
 
-    context 'when_neither_element_nor_sub_atomic_particles_are_given' do
+    context 'when_neither_element_nor_sub_atomic_particle_count_are_given' do
       it 'should_not_have_element' do
         expect(empty_atom.element).to be_nil
       end
