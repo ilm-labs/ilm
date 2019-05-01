@@ -7,12 +7,12 @@ module Ilm
       CHARGE = (1.60217646 * (10**-19)).C
       MASS = (1.672621898 * (10**-27)).kg
 
-      def initialize(nucleus)
-        @nucleus = nucleus
+      def initialize(args = {})
+        @nucleus = args[:nucleus] || args[:atom]&.nucleus
       end
 
       def atom
-        @nucleus.atom
+        @nucleus&.atom
       end
 
       def charge
