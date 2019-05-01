@@ -22,6 +22,22 @@ module Ilm
         ELEMENTS << new(row)
       end
 
+      def new_atom
+        Atom.new(element: self)
+      end
+
+      def no_of_protons
+        atomic_number
+      end
+
+      def no_of_electrons
+        atomic_number
+      end
+
+      def no_of_neutrons
+        (atomic_mass.value - atomic_number).to_i
+      end
+
       private
 
       def self.method_missing(m, *args)

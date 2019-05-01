@@ -12,3 +12,5 @@
 .rspec_status
 
 ilm*.gem
+
+.byebug_history
