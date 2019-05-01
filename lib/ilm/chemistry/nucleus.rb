@@ -4,7 +4,7 @@ module Ilm
     class Nucleus
       attr_reader :protons, :neutrons, :atom, :element
 
-      def initialize(args)
+      def initialize(args = {})
         @atom = args[:atom]
         @element = @atom&.element
 
@@ -26,14 +26,14 @@ module Ilm
 
       def build_protons(args)
         @protons = []
-        no_of_protons = (args[:protons] || @element&.no_of_protons).to_i
-        no_of_protons.times { @protons << Proton.new(self) }
+        no_of_protons = (args[:proton_count] || @element&.no_of_protons).to_i
+        no_of_protons.times { @protons << Proton.new(nucleus: self) }
       end
 
       def build_neutrons(args)
         @neutrons = []
-        no_of_neutrons = (args[:neutrons] || @element&.no_of_neutrons).to_i
-        no_of_neutrons.times { @neutrons << Neutron.new(self) }
+        no_of_neutrons = (args[:neutron_count] || @element&.no_of_neutrons).to_i
+        no_of_neutrons.times { @neutrons << Neutron.new(nucleus: self) }
       end
     end
   end
