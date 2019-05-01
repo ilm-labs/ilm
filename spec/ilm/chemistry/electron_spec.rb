@@ -22,6 +22,14 @@ RSpec.describe Electron do
 
   let(:empty_e) { Electron.new }
 
+  context 'Constants' do
+    it 'should_have_correct_values' do
+      expect(Electron::CHARGE).to eq (-1.60217646 * (10**-19)).C
+      expect(Electron::MASS).to eq (9.10938356 * (10**-31)).kg
+      expect(Electron::SPINS).to eq(%i[+ -])
+    end
+  end
+
   context '#initialize' do
     context 'when_only_spin_is_given' do
       it 'should_have_the_correct_spin' do
