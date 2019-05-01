@@ -6,8 +6,6 @@ require 'ilm/chemistry'
 
 Atom = Ilm::Chemistry::Atom
 Nucleus = Ilm::Chemistry::Nucleus
-Element = Ilm::Chemistry::Element
-Electron = Ilm::Chemistry::Electron
 Proton = Ilm::Chemistry::Proton
 Neutron = Ilm::Chemistry::Neutron
 

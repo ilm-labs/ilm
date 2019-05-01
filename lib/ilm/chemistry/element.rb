@@ -23,9 +23,7 @@ module Ilm
       end
 
       def new_atom
-        Atom.new(electrons: @atomic_number,
-                 protons: @atomic_number,
-                 neutrons: @atomic_mass.value - @atomic_number)
+        Atom.new(element: self)
       end
 
       def no_of_protons
