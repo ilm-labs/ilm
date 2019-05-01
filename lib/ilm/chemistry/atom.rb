@@ -4,13 +4,14 @@ module Ilm
     class Atom
       attr_reader :electrons, :protons, :neutrons, :nucleus, :element
 
-      def initialize(args)
+      def initialize(args = {})
         @element = args[:element]
 
         @nucleus = Nucleus.new(args.merge(atom: self))
         @protons = @nucleus.protons
         @neutrons = @nucleus.neutrons
 
+        @electrons = []
         build_electrons(args)
       end
 
@@ -23,13 +24,12 @@ module Ilm
       end
 
       def element?
-        Element.get_by_atomic_number @protons.count
+        Element.get_by_atomic_number(@protons.count) unless @protons.count.zero?
       end
 
       private
 
       def build_electrons(args)
-        @electrons = []
         no_of_electrons = (args[:electrons] || @element&.atomic_number).to_i
         no_of_electrons.times { @electrons << Electron.new(atom: self) }
       end
