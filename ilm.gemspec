@@ -38,11 +38,11 @@ Gem::Specification.new do |spec|
   ]
 
   spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'byebug', '~> 11.0', '>= 11.0.1'
   spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.2'
   spec.add_development_dependency 'rspec', '~> 3.8'
   spec.add_development_dependency 'rubocop', '~> 0.67.2'
   spec.add_development_dependency 'rubocop-performance', '~> 1.1'
-
   spec.add_dependency             'rubypython', '~> 0.6.4'
   spec.add_dependency             'unitwise', '~>2.2'
 end
