@@ -1,0 +1,8 @@
+version: '3'
+services:
+  console:
+    build: .
+    volumes:
+      - '~/ilm:/ilm:ro'
+    image: git-bash
+    tty: true
