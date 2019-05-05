@@ -19,11 +19,9 @@ RUN mkdir /ilm
 COPY ./lib/ilm/version.rb /ilm/lib//ilm/version.rb
 COPY ./ilm.gemspec /ilm/ilm.gemspec
 COPY ./Gemfile /ilm/Gemfile
-# COPY ./Gemfile.lock /ilm/Gemfile.lock
+COPY ./Gemfile.lock /ilm/Gemfile.lock
 
 WORKDIR /ilm
 
 RUN gem install bundler
 RUN bundle install
-
-COPY ./ /ilm
