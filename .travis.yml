@@ -10,7 +10,7 @@ services:
 
 before_install:
   - docker build -t console .
-  - docker run -v ~/ilm:/ilm:ro console /bin/sh -c "cd /root/sinatra; bundle exec rake test"
+  - docker run -v ~/ilm:/ilm:ro console /bin/sh -c "cd /ilm; bundle exec rake test"
   - docker ps -a
   - gem install bundler
 
