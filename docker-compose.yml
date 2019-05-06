@@ -3,6 +3,6 @@ services:
   console:
     build: .
     volumes:
-      - '~/ilm:/ilm:ro'
+      - '~/ilm:/ilm'
     image: git-bash
     tty: true
