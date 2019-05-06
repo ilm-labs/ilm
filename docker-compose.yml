@@ -3,7 +3,7 @@ services:
   console:
     build: .
     volumes:
-      - '~/ilm:/ilm'
+      - ~/ilm:/ilm
     image: git-bash
     tty: true
     stdin_open: true
