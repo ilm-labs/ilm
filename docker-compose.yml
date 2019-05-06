@@ -6,3 +6,4 @@ services:
       - '~/ilm:/ilm'
     image: git-bash
     tty: true
+    stdin_open: true
