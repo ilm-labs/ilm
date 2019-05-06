@@ -1,18 +1,11 @@
-sudo: false
-
 language: ruby
-
-rvm:
-  - 2.6.3
 
 services:
   - docker
 
 before_install:
-  - docker build -t console .
-  - docker run -v ~/ilm:/ilm:ro console bash -c "cd ilm; rspec"
-  - docker ps -a
-  - gem install bundler
+- docker build -t console .
+- docker run -it console /bin/sh -c "cd /ilm; rspec;"
 
 script:
-  - rspec
+- rspec
