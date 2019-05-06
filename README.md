@@ -1,4 +1,4 @@
-[travis]: https://travis-ci.org/ilm-labs/ilm
+[travis]: https://travis-ci.com/ilm-labs/ilm
 
 # Ilm
 Ilm is a Ruby gem for Chemistry, which supports the calculation of molecular mass of compound, balancing chemical equations and efficient handling of states of chemical species.
