@@ -10,9 +10,9 @@ services:
 
 before_install:
   - docker build -t console .
-  - docker run -v ~/ilm:/ilm:ro console bash -c "ls"
+  - docker run -v ~/ilm:/ilm:ro console bash -c "ls -a"
   - docker ps -a
   - gem install bundler
 
 script:
-  - bundle exec rake test
+  - rspec
