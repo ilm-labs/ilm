@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/ilm.svg)](https://badge.fury.io/rb/ilm)
 [![Build Status](https://www.travis-ci.com/ilm-labs/ilm.svg?branch=master)](https://www.travis-ci.com/ilm-labs/ilm)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4cac0f749ff28696470b/maintainability)](https://codeclimate.com/github/ilm-labs/ilm/maintainability)
 
