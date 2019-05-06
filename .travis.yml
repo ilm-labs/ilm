@@ -1,7 +1,7 @@
 env:
-  DOCKER_COMPOSE_VERSION: 1.21.0
+  DOCKER_COMPOSE_VERSION: 1.8.0
 
-install:
+before_install:
   - docker-compose up --build
 
 script:
