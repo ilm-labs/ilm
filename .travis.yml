@@ -10,7 +10,7 @@ services:
 
 before_install:
   - docker build -t console .
-  - docker run -v ~/ilm:/ilm:ro console bash -c "rspec"
+  - docker run -v ~/ilm:/ilm:ro console bash -c "cd ilm; rspec"
   - docker ps -a
   - gem install bundler
 
