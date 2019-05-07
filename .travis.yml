@@ -16,7 +16,7 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - docker-compose exec console rspec
+  - rspec
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -r 09e48e4c16a44745de87a5aa5471dcfa53db8b868d9419e2e5d7a3312599e641
