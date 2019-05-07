@@ -1,8 +1,22 @@
 env:
   DOCKER_COMPOSE_VERSION: 1.8.0
+  global:
+    - CC_TEST_REPORTER_ID=ABC123
+
+language: ruby
+rvm:
+  - 2.6.3
 
 before_install:
   - docker-compose build
 
+before_script:
+  - docker-compose run bash -c 'curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
+  - docker-compose run bash -c 'chmod +x ./cc-test-reporter'
+  - docker-compose run bash -c './cc-test-reporter before-build'
+
 script:
   - docker-compose run console rspec
+
+after_script:
+  - docker-compose run bash -c './cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT'

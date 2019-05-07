@@ -43,6 +43,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.8'
   spec.add_development_dependency 'rubocop', '~> 0.67.2'
   spec.add_development_dependency 'rubocop-performance', '~> 1.1'
+  spec.add_development_dependency 'simplecov'
+
   spec.add_dependency             'rubypython', '~> 0.6.4'
   spec.add_dependency             'unitwise', '~>2.2'
 end
