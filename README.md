@@ -2,7 +2,6 @@
 [![Build Status](https://www.travis-ci.com/ilm-labs/ilm.svg?branch=master)](https://www.travis-ci.com/ilm-labs/ilm)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4cac0f749ff28696470b/maintainability)](https://codeclimate.com/github/ilm-labs/ilm/maintainability)
 [![Inline docs](http://inch-ci.org/github/ilm-labs/ilm.svg?branch=master)](http://inch-ci.org/github/ilm-labs/ilm)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ilm-labs/ilm.svg?style=plastic)
 
 # Ilm
 Ilm is a Ruby gem for Chemistry, which supports the calculation of molecular mass of compound, balancing chemical equations and efficient handling of states of chemical species.
