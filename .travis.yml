@@ -1,7 +1,7 @@
 env:
   DOCKER_COMPOSE_VERSION: 1.8.0
   global:
-    - CC_TEST_REPORTER_ID=ABC123
+    - CC_TEST_REPORTER_ID=09e48e4c16a44745de87a5aa5471dcfa53db8b868d9419e2e5d7a3312599e641
 
 language: ruby
 rvm:
