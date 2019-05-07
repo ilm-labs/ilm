@@ -8,15 +8,15 @@ rvm:
   - 2.6.3
 
 before_install:
-  - docker-compose build
+  - docker-compose up --build
 
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+# before_script:
+#   - docker-compose exec console bash -c 'curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
+#   - docker-compose exec console bash -c 'chmod +x ./cc-test-reporter'
+#   - docker-compose exec console bash -c './cc-test-reporter before-build'
 
 script:
-  - rspec
+  - docker-compose exec console rspec
 
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -r 09e48e4c16a44745de87a5aa5471dcfa53db8b868d9419e2e5d7a3312599e641
+# after_script:
+#   - docker-compose exec console bash -c './cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT'
